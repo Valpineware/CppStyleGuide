@@ -19,9 +19,19 @@
 
 	<br/>
 	<h2>Naming</h2>
-		<p></p>
-		<p></p>
-
+		<h3>Primitive Types</h3>
+			<p>Includes all C++ primitive types. TODO typedef them or not?</p>
+		<h3>User Types</h3>
+			<p>Includes classes, structures, enumerations, unions, and typedefs. Use CamelCase with an initial upper-case letter.</p>
+			<p>Ex. class Vec2; class ComboBox; union BytePack;</p>
+		<h3>Variables</h3>
+			<p>All variables use camelCase with an initial lower-case letter. Global variables are prefixed with "g". Member variables are prefixed with "m". Parameters are prefixed with "p". </p>
+			<p>Ex. const int gAppVersion; float mRotation; Vec2 pPosition; int count;</p>
+		<h3>Namespaces</h3>
+			<p>All namespaces use camelCase with an initial lower-case letter. Note that namespaces should be kept as short as possible. Usually they are represented as an acronym or abbreviation.</p>
+			<p>Ex. namespace t3d { }</p>
+		<h3>Macros</h3>
+			<p>All macros use ALL_CAPS_SNAKE_CASE. Note that macros are only to be used for redundant tasks that can't easily be divided into a real routine. TODO move non-naming content elsewhere</p>
 
 	<br/>
 	<h2>Formatting</h2>
