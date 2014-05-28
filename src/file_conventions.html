@@ -6,7 +6,22 @@
 
 <body>
 	<h2>File Conventions</h2>
-		<h3></h3>
+		<h3>Header Files</h3>
+			<p>Header files always use the .h extension. After the boilerplate, they must have inclusion guards defined with the following format: TODO FMT _ProjectName_FileName_H. Following that, a project consistent namespace must be declared.</p>
+			<p>Up to one class may be defined in a header file. An unlimited number of other data types may be defined (struct, enum, union, typedef, etc.).</p>
+			<p>Avoid including other header files when possible. Do not declare members as pointers to avoid an inclusion.</p>
+			<p>Avoid implementing methods in the header file unless they are small. 1-2 line set/get methods maybe be squashed to a single line.</p>
+			
+		<h3>Source Files</h3>
+			<p>Source files always use the .cpp extension. After the boilerplate, they must declare a project consistent namespace.</p>
+			<p>Up to one class may be implemented</p>
+			<p>Avoid defining data types. Use nested definitions in the header file instead.</p>
+
+		<h3>Other Files</h3>
 			<p></p>
+			
+		<h3>Directory Format</h3>
+			<p>All code files should reside somewhere under the directory /ProjectRoot/Src/. Subsystems should have their own directory from the parent. For example: /Src/Core/ and /Src/Physics/.</p>
+			<p>Header and source files dealing with the same class should be in the same directory. For example: /Src/Physics/Body.h and /Src/Physics/Body.cpp</p>
 </body>
 </html>
