@@ -41,10 +41,38 @@
 			<p></p>
 			
 		<h3>Access Control</h3>
-			<p></p>
+			<p>By default, everything should be declared private. Instance variables should never be declared public unless it greatly enhances convenience (such as x, y, z on a Vec3). Only lower access control when necessary</p>
+			<p>Instance variables declared protected should be avoided unless it greatly enhances convenience. Supplying a protected get wrapper is usually sufficient.</p>
+			<p>Functions declared protected is preferred over public/friend if derived classes.</p>
+			<p>If only a few functions need to be accessed only by an external class, consider declaring them as friend functions. This provides better encapsulation than declaring them public, but does create a tight coupling</p>
+			<p>If many functions need to be accessed by an external classes, consider declaring the external class as a friend. While this does expose private instance variables, it is much simpler than declaring many friend functions.</p>
+			<p>Functions declared public represent public API and cannot be changed easily without breaking other systems. Limit the public API and make it hard to use wrong.</p>
 			
 		<h3>Declaration Order</h3>
-			<p></p>
+			<p>Declare members in the order of public, protected, private. Within each, declare members in the order of nested types, constants, constructors, destructors, functions, instance variables.</p>
+			<p>Example: class Terrain3D : public OpenGLWindow
+						{
+						public:
+							Terrain3D();
+
+						private:
+							void onStartup();
+							void onUpdate(double currentTime);
+							void onKey(int key, int action);
+							void onResize(int width, int height);
+							void onTerminate();
+
+							void loadShaders();
+							void updateKeys();
+
+						private:
+							int mProgram;
+							int mVbo, mIbo, mVao;
+							UniformLocations mUniformLocations;
+
+							World mWorld;
+							Camera mCamera;
+						};</p>
 			
 		<h3>Write Short Functions</h3>
 			<p></p>
