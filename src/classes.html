@@ -8,31 +8,47 @@
 <body>
 	<h2>Classes</h2>
 		<h3>Doing Work in Constructors</h3>
-			<p></p>
+			<p>Avoid doing complex tasks which could fail inside of constructors. Examples of complex tasks include: file operations, lengthy computations, launching threads, and anything else that can become decentralized or fail. Never call virtual functions from a constructor.</p>
+			
 		<h3>Initialization</h3>
-			<p></p>
+			<p>Tasks that cannot be performed in a constructor should be moved to an initialization method called "init". Member data should be initialized using initializer lists instead of assignment in the body of the constructor. If there are multiple overloads for the constructor (besides the copy), consider calling the default constructor from the initializer list instead of duplicating member data initialization in multiple constructors.</p>
+			
 		<h3>Explicit Constructors</h3>
-			<p></p>
+			<p>Constructors with one argument should always be declared explicit. Multiple argument constructors can be declared explicit as needed.</p>
+			
 		<h3>Copy Constructors</h3>
 			<p></p>
+			
 		<h3>Delegating and inheriting constructors</h3>
 			<p></p>
+			
 		<h3>Structs vs. Classes</h3>
 			<p></p>
+			
 		<h3>Inheritance</h3>
-			<p></p>
+			<p>Only use inheritance if it simplifies the situation. Composition is usually more appropriate. Inheritance should always model an "is-a" relationship. Only use public inheritance. Private and protected inheritance usually indicate a need for composition.</p>
+			<p>Use protected member functions only when necessary. Avoid protected member variables at all costs. They can be wrapped in a protected get method if absolutely needed.</p>
+			<p>Destructors should be declared virtual if there are any virtual functions.</p>
+			<p>When overriding a virtual method from a super class, declare it virtual to avoid any confusion. Never change the signature of a derived virtual method.</p>
+			
 		<h3>Multiple Inheritance</h3>
 			<p></p>
+			
 		<h3>Interfaces</h3>
 			<p></p>
+			
 		<h3>Operator Overloading</h3>
 			<p></p>
+			
 		<h3>Access Control</h3>
 			<p></p>
+			
 		<h3>Declaration Order</h3>
 			<p></p>
+			
 		<h3>Write Short Functions</h3>
 			<p></p>
+			
 		<h3></h3>
 			<p></p>
 </body>
