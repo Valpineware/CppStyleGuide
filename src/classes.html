@@ -8,31 +8,74 @@
 <body>
 	<h2>Classes</h2>
 		<h3>Doing Work in Constructors</h3>
-			<p></p>
+			<p>Avoid doing complex tasks which could fail inside of constructors. Examples of complex tasks include: file operations, lengthy computations, launching threads, and anything else that can become decentralized or fail. Never call virtual functions from a constructor.</p>
+
 		<h3>Initialization</h3>
-			<p></p>
+			<p>Tasks that cannot be performed in a constructor should be moved to an initialization method called "init". Member data should be initialized using initializer lists instead of assignment in the body of the constructor. If there are multiple overloads for the constructor (besides the copy), consider calling the default constructor from the initializer list instead of duplicating member data initialization in multiple constructors.</p>
+
 		<h3>Explicit Constructors</h3>
-			<p></p>
+			<p>Constructors with one argument should always be declared explicit. Multiple argument constructors can be declared explicit as needed.</p>
+
 		<h3>Copy Constructors</h3>
-			<p></p>
-		<h3>Delegating and inheriting constructors</h3>
-			<p></p>
+			<p>Declare a copy constructor and assignment operator only when necessary. Otherwise they should be declared private. A macro should be defined to simplify the process of declaring them private.</p>
+
 		<h3>Structs vs. Classes</h3>
-			<p></p>
+			<p>Use structs only for passive objects that carry data. Instance variables should be marked as public. Functions should only be used for setting data.</p>
+
 		<h3>Inheritance</h3>
-			<p></p>
+			<p>Only use inheritance if it simplifies the situation. Composition is usually more appropriate. Inheritance should always model an "is-a" relationship. Only use public inheritance. Private and protected inheritance usually indicate a need for composition.</p>
+			<p>Use protected member functions only when necessary. Avoid protected member variables at all costs. They can be wrapped in a protected get method if absolutely needed.</p>
+			<p>Destructors should be declared virtual if there are any virtual functions.</p>
+			<p>When overriding a virtual method from a super class, declare it virtual to avoid any confusion. Never change the signature of a derived virtual method.</p>
+
 		<h3>Multiple Inheritance</h3>
 			<p></p>
+
 		<h3>Interfaces</h3>
 			<p></p>
+			
 		<h3>Operator Overloading</h3>
-			<p></p>
+			<p>Avoid operator overloading except for cases when it greatly improves convenience and readability. String classes benefit from operators such as == for equals, += for append, and + for temporary appending. There are many examples where overloading and operator can result in unintuitive behaviour such as overloading operator&. Sometimes overloading comparison operators is necessary for sorting functions like std::sort. Sometimes overloading operator< for use with std::sort can be tricky if a class might be subject to variable sorting orders. For example, a class Student might need to be sorted depending on certain criteria. When calling std::sort and relying on operator<, it's hard to sort on specific criteria such as the student's GPA vs attendance. Instead, comparison functions should be used instead for scenarios like this.</p>
+			
 		<h3>Access Control</h3>
-			<p></p>
+			<p>By default, everything should be declared private. Instance variables should never be declared public unless it greatly enhances convenience (such as x, y, z on a Vec3). Only lower access control when necessary</p>
+			<p>Instance variables declared protected should be avoided unless it greatly enhances convenience. Supplying a protected get wrapper is usually sufficient.</p>
+			<p>Functions declared protected is preferred over public/friend if derived classes.</p>
+			<p>If only a few functions need to be accessed only by an external class, consider declaring them as friend functions. This provides better encapsulation than declaring them public, but does create a tight coupling</p>
+			<p>If many functions need to be accessed by an external classes, consider declaring the external class as a friend. While this does expose private instance variables, it is much simpler than declaring many friend functions.</p>
+			<p>Functions declared public represent public API and cannot be changed easily without breaking other systems. Limit the public API and make it hard to use wrong.</p>
+			
 		<h3>Declaration Order</h3>
-			<p></p>
+			<p>Declare members in the order of public, protected, private. Within each, declare members in the order of nested types, constants, constructors, destructors, functions, instance variables.</p>
+			<p>Example: class Terrain3D : public OpenGLWindow
+						{
+						public:
+							Terrain3D();
+
+						private:
+							void onStartup();
+							void onUpdate(double currentTime);
+							void onKey(int key, int action);
+							void onResize(int width, int height);
+							void onTerminate();
+
+							void loadShaders();
+							void updateKeys();
+
+						private:
+							int mProgram;
+							int mVbo, mIbo, mVao;
+							UniformLocations mUniformLocations;
+
+							World mWorld;
+							Camera mCamera;
+						};</p>
+
 		<h3>Write Short Functions</h3>
-			<p></p>
+			<p>Redundancy and excessive length means you are probably doing it wrong. If a function exceeds 50 lines, it's probably worth breaking it into more reusable code. Likewise, any duplicate functionality spanning more than a single line (or that requires really long lines) probably would benefit from have a helper function wrapping it. There are exceptions to this limit such as large switch statements or other large conditionals where it's very clear what is happening. If you encounter a function with an overwhelming length or complexity, re-factor it.</p>
+		
+		<h3>Write Focused Classes</h3>
+			<p>A class should represent one thing. It should never be responsible for implementing divergent behaviour. </p>
 		<h3></h3>
 			<p></p>
 </body>

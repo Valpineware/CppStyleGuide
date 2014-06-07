@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Functions</title>
+</head>
+
+<body>
+	<h2>Functions</h2>
+		<p>Note that for the context of this guide, functions and methods are analogues</p>
+		
+		<h3>Signature</h3>
+			<h4>Arguments</h4>
+				<p>Functions should have a maximum of 6 arguments. If more arguments are needed, consider grouping them into a structure.</p>
+			
+			<h4>Pass by Value</h4>
+				<p>Variables should be passed by value only if there is a need to copy the value into a separate instance. If the variable does not necessarily need to be copied or reference the passed variable but is represented by a primitive type, then you should always pass it by value.</p>
+				<p>Do not declare arguments passed by value as constant even though modifying arguments in the body of a method should be avoided. This semantic freedom is granted primarily to reduce code bloat.</p>
+			
+			<h4>Pass by Reference</h4>
+				<p>All objects should be passed by const reference by default.</p>
+			
+			<h4>Pass by Pointer</h4>
+			
+			<h4>Return Values</h4>
+				<p>Only new variables that differ from the input should be returned.</p>
+				<p>Error conditions that extend past boolean conditions should return an instance of some error class or enumeration. Avoid returning raw integers</p>
+				
+			<h4>Overloading</h4>
+				<p>By default, do not overload unless there becomes a need to simplify calling the method.</p>
+				
+			<h4>Default Values</h4>
+				<p>Avoid default values. Only set them when it is safe and improves calling convenience. Never supply a default value for the sake of providing a default value. If the goal is to provide a default behaviour, consider writing a wrapper that clearly states it performs default behaviour in its name.</p>
+			
+			<h4>Friends</h4>
+			
+			<h4>Inline</h4>
+				
+			
+		<h3>Body</h3>
+			<h4>Exceptions</h4>
+			<h4>RTTI</h4>
+</body>
+</html>
